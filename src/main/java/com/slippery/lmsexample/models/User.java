@@ -35,4 +35,12 @@ public class User {
     private List<Course> courseList;
     private LocalDateTime enrolledOn =LocalDateTime.now();
     private String cohort;
+    @OneToMany
+    private List<Module> userModules;
+    private String Location;
+    private String githubAccount;
+    private String linkedinAccount;
+    @Lob
+    private String userDescription;
+    private String mobileNumber;
 }
