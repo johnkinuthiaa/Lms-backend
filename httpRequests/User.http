@@ -33,3 +33,14 @@ Content-Type: application/json
 {
   "githubAccount": "http://localhost:8080/api/v1/users/1/update"
 }
+###
+POST http://localhost:8080/api/v1/users/register
+Content-Type: application/json
+
+{
+  "password": "kingkade500",
+  "email": "skingkade@gmail.com",
+  "username": "king kade",
+  "role": "STUDENT"
+}
+###

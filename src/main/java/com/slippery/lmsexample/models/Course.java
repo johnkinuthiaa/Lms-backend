@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,5 +34,7 @@ public class Course {
     private List<User> enrolledLearners;
     @ManyToOne
     private User instructorDetails;
+    private LocalDateTime createdOn =LocalDateTime.now();
+    private LocalDateTime updatedOn =null;
 
 }
