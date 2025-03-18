@@ -1,6 +1,5 @@
 package com.slippery.lmsexample.models;
 
-import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -27,7 +26,7 @@ public class Course {
     @Lob
     private String description;
     @OneToMany
-    private List<Module> modulesInCourse =new ArrayList<>();
+    private List<CourseModule> modulesInCourse =new ArrayList<>();
     @NotNull
     private Long price;
     @OneToMany

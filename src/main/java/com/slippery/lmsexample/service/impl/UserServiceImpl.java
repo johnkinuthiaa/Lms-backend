@@ -9,10 +9,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+@Service
 public class UserServiceImpl implements UsersService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder =new BCryptPasswordEncoder(12);
@@ -39,10 +41,11 @@ public class UserServiceImpl implements UsersService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setEnrolledOn(LocalDateTime.now());
         user.setCourseList(new ArrayList<>());
-        user.setUserModules(new ArrayList<>());
+        user.setUserCourseModules(new ArrayList<>());
         try{
             userRepository.save(user);
             response.setMessage("New user "+user.getUsername()+" created successfully");
+            response.setStatusCode(201);
             response.setUser(user);
         } catch (Exception e) {
             response.setMessage(e.getLocalizedMessage());
@@ -60,15 +63,18 @@ public class UserServiceImpl implements UsersService {
             response.setStatusCode(404);
             return response;
         }
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(username,userDetails.getPassword()));
-        if(authentication.isAuthenticated()){
-            response.setMessage("Logged in successfully");
-            response.setStatusCode(200);
-        }else{
+        try{
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(username,userDetails.getPassword()));
+            if(authentication.isAuthenticated()){
+                response.setMessage("Logged in successfully");
+                response.setStatusCode(200);
+            }
+        } catch (Exception e) {
             response.setStatusCode(401);
-            response.setMessage("Error logging you in! please check your login details ");
+            response.setMessage("Error logging you in! because "+e.getLocalizedMessage());
         }
+
         return response;
     }
 

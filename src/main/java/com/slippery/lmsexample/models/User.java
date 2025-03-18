@@ -36,7 +36,7 @@ public class User {
     private LocalDateTime enrolledOn =LocalDateTime.now();
     private String cohort;
     @OneToMany
-    private List<Module> userModules;
+    private List<CourseModule> userCourseModules;
     private String Location;
     private String githubAccount;
     private String linkedinAccount;

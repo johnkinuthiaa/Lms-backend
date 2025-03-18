@@ -4,7 +4,9 @@ import com.slippery.lmsexample.dto.AssignmentDto;
 import com.slippery.lmsexample.models.Assignment;
 import com.slippery.lmsexample.repository.AssignmentRepository;
 import com.slippery.lmsexample.service.AssignmentService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AssignmentServiceImplementation implements AssignmentService {
     private final AssignmentRepository assignmentRepository;
 

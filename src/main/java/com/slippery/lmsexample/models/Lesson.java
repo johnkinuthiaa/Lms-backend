@@ -19,6 +19,6 @@ public class Lesson {
     @Lob
     private String content;
     @ManyToOne
-    private Module module;
+    private CourseModule courseModule;
 
 }

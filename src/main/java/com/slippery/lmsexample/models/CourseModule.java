@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Module {
+public class CourseModule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
