@@ -21,4 +21,6 @@ public class CourseModule {
     private Course course;
     @OneToMany
     private List<Lesson> lessonsInModule;
+    @ManyToOne
+    private User tutor;
 }

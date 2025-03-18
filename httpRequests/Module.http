@@ -3,3 +3,9 @@ GET https://examples.http-client.intellij.net/get
     ?generated-in=IntelliJ IDEA
 
 ###
+PUT http://localhost:8080/api/v1/modules/1/new-module?courseId=1
+Content-Type: application/json
+
+{
+  "title": "Python programming"
+}

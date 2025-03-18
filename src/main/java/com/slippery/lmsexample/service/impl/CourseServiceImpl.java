@@ -2,7 +2,9 @@ package com.slippery.lmsexample.service.impl;
 
 import com.slippery.lmsexample.dto.CourseDto;
 import com.slippery.lmsexample.models.Course;
+import com.slippery.lmsexample.models.Enrollment;
 import com.slippery.lmsexample.repository.CourseRepository;
+import com.slippery.lmsexample.repository.EnrollmentRepository;
 import com.slippery.lmsexample.service.CourseService;
 import com.slippery.lmsexample.service.UsersService;
 import org.springframework.stereotype.Service;
@@ -14,10 +16,12 @@ import java.util.Objects;
 public class CourseServiceImpl implements CourseService {
     private final CourseRepository repository;
     private final UsersService usersService;
+    private final EnrollmentRepository enrollmentRepository;
 
-    public CourseServiceImpl(CourseRepository repository, UsersService usersService) {
+    public CourseServiceImpl(CourseRepository repository, UsersService usersService, EnrollmentRepository enrollmentRepository) {
         this.repository = repository;
         this.usersService = usersService;
+        this.enrollmentRepository = enrollmentRepository;
     }
 
     @Override
@@ -96,13 +100,13 @@ public class CourseServiceImpl implements CourseService {
             response.setStatusCode(user.getStatusCode());
             return response;
         }
-
         var userCourses =user.getUser().getCourseList();
         if(userCourses.contains(course.getCourse())){
             response.setMessage("User was already to the course with id "+courseId);
             response.setStatusCode(404);
             return response;
         }
+
         userCourses.add(course.getCourse());
         user.getUser().setCourseList(userCourses);
 
@@ -112,7 +116,10 @@ public class CourseServiceImpl implements CourseService {
         repository.save(course.getCourse());
         response.setStatusCode(200);
         response.setMessage("User "+user.getUser().getUsername()+" enrolled to the "+course.getCourse().getTitle()+" course.");
-
+        Enrollment enrollment =new Enrollment();
+        enrollment.setCourseEnrolled(course.getCourse());
+        enrollment.setUser(user.getUser());
+        enrollmentRepository.save(enrollment);
         return response;
     }
 
@@ -141,8 +148,9 @@ public class CourseServiceImpl implements CourseService {
         enrolledUsers.remove(user.getUser());
         course.getCourse().setEnrolledLearners(enrolledUsers);
         repository.save(course.getCourse());
-        response.setMessage("User un-enrolled from course");
+        response.setMessage("User "+user.getUser().getUsername()+" un-enrolled from course "+course.getCourse().getTitle());
         response.setStatusCode(203);
         return response;
     }
+
 }

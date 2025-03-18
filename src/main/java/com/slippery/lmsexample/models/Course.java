@@ -26,7 +26,7 @@ public class Course {
     @NotNull
     @Lob
     private String description;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<CourseModule> modulesInCourse =new ArrayList<>();
     @NotNull
     private Long price;
