@@ -5,4 +5,5 @@ import com.slippery.lmsexample.models.Lesson;
 
 public interface LessonService {
     LessonDto createNewLesson(Long tutorId, Long courseId, Long moduleId, Lesson lessonDetails);
+    LessonDto findLessonById(Long lessonId);
 }

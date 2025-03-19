@@ -3,3 +3,43 @@ GET https://examples.http-client.intellij.net/get
     ?generated-in=IntelliJ IDEA
 
 ###
+POST http://localhost:8080/api/v1/quiz/create-quiz?adminId=1&lessonId=1
+Content-Type: application/json
+
+{
+  "questions": [
+    {
+      "questionText": "What does SQL stand for?",
+      "correctAnswer": "Structured Query Language",
+      "options": ["Structured Query Language", "Simple Query Language", "System Query Logic", "Sequential Query Listing"]
+    },
+    {
+      "questionText": "Which of the following is a type of database model?",
+      "correctAnswer": "Relational",
+      "options": ["Relational", "Graphical", "Auditory", "Sensory"]
+    },
+    {
+      "questionText": "What is the primary key used for in a database table?",
+      "correctAnswer": "Uniquely identifying each record",
+      "options": ["Uniquely identifying each record", "Sorting data alphabetically", "Storing image files", "Encrypting passwords"]
+    },
+    {
+      "questionText": "Which term describes a collection of related data?",
+      "correctAnswer": "Database",
+      "options": ["Database", "Algorithm", "Function", "Variable"]
+    },
+    {
+      "questionText": "What does DBMS stand for?",
+      "correctAnswer": "Database Management System",
+      "options": [
+        "Database Management System",
+        "Data Binary Memory Storage",
+        "Digital Business Marketing Solution",
+        "Document Backup Maintenance Software"
+      ]
+    }
+  ]
+}
+
+###
+GET http://localhost:8080/api/v1/quiz/2/get

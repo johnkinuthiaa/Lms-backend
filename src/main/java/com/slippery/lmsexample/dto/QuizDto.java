@@ -2,6 +2,7 @@ package com.slippery.lmsexample.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.slippery.lmsexample.models.Quiz;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Quiz extends BaseEntity{
+public class QuizDto extends BaseEntity{
     private Quiz quiz;
     private List<Quiz> quizList;
 }

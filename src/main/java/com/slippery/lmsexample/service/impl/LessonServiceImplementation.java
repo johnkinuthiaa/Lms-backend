@@ -65,4 +65,19 @@ public class LessonServiceImplementation implements LessonService {
         response.setStatusCode(201);
         return response;
     }
+
+    @Override
+    public LessonDto findLessonById(Long lessonId) {
+        LessonDto response =new LessonDto();
+        var lesson =lessonRepository.findById(lessonId);
+        if(lesson.isEmpty()){
+            response.setMessage("Lesson with id "+lessonId+" was not found");
+            response.setStatusCode(404);
+            return response;
+        }
+        response.setMessage("Lesson with id "+lessonId+" .");
+        response.setStatusCode(200);
+        response.setLesson(lesson.get());
+        return response;
+    }
 }

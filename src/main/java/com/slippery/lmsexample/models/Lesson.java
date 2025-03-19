@@ -21,5 +21,7 @@ public class Lesson {
     private String content;
     @ManyToOne
     private CourseModule courseModule;
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+    private Quiz quiz;
 
 }
