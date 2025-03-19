@@ -155,4 +155,20 @@ public class CourseServiceImpl implements CourseService {
         return response;
     }
 
+    @Override
+    public CourseDto findAllCourses() {
+        CourseDto response =new CourseDto();
+        var allCourses =repository.findAll().reversed();
+        if(allCourses.isEmpty()){
+            response.setMessage("Course list is empty at the moment");
+            response.setStatusCode(203);
+            return response;
+        }
+        response.setMessage("All our courses");
+        response.setStatusCode(200);
+        response.setCourseList(allCourses);
+        return response;
+    }
+
+
 }

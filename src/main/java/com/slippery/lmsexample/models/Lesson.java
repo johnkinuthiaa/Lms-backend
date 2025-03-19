@@ -1,5 +1,6 @@
 package com.slippery.lmsexample.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,8 +21,10 @@ public class Lesson {
     @Lob
     private String content;
     @ManyToOne
+    @JsonIgnore
     private CourseModule courseModule;
     @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JsonIgnore
     private Quiz quiz;
 
 }

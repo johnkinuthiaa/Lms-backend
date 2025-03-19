@@ -3,10 +3,16 @@ GET https://examples.http-client.intellij.net/get
     ?generated-in=IntelliJ IDEA
 
 ###
-POST http://localhost:8080/api/v1/lessons/create?tutorId=1&courseId=1&moduleId=2
+POST http://localhost:8080/api/v1/lessons/create?tutorId=1&courseId=1&moduleId=4
 Content-Type: application/json
 
 {
-  "title": "introduction to web technologies",
-  "content": "web is the new web"
+  "title": "Introduction to java",
+  "content": "For absolute beginners, think of Java as a set of instructions you give to a computer, but in a very specific language it understands. We'll start super simple: imagine you want to tell the computer to say 'Hello!' We'll learn how to write that instruction in Java. First, we'll need to set up a place to write these instructions, called a 'program.' Then, we'll learn the basic 'words' Java understands, like how to tell it to display text. We'll also talk about how Java runs on different computers, like magic, without needing to change much. Don't worry about getting everything perfect right away; we'll take it step by step, focusing on the core ideas, so you can start writing your own little programs and see them come to life!"
 }
+###
+
+GET http://localhost:8080/api/v1/lessons/2/get
+
+###
+GET http://localhost:8080/api/v1/lessons/all-in/2

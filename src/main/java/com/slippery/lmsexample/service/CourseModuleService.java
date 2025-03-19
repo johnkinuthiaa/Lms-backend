@@ -9,4 +9,6 @@ public interface CourseModuleService {
     CourseDto removeModuleFromCourse(Long adminId,Long courseId, Long moduleId);
     ModuleDto findModuleById(Long moduleId);
 
+    ModuleDto findAllModules();
+    ModuleDto findAllModulesInCourse(Long courseId);
 }

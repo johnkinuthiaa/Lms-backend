@@ -9,4 +9,6 @@ public interface CourseService {
     CourseDto deleteCourseById(Long adminId,Long courseId);
     CourseDto enrollUserToCourse(Long userId,Long courseId);
     CourseDto unEnrollUserToCourse(Long userId,Long courseId);
+    CourseDto findAllCourses();
+
 }

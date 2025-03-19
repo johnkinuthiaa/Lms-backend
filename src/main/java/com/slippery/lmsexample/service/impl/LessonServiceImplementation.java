@@ -80,4 +80,20 @@ public class LessonServiceImplementation implements LessonService {
         response.setLesson(lesson.get());
         return response;
     }
+
+    @Override
+    public LessonDto findAllLessonsInModule(Long moduleId) {
+        LessonDto response =new LessonDto();
+        var existingModule =courseModuleService.findModuleById(moduleId);
+        if(existingModule.getStatusCode() !=200){
+            response.setMessage(existingModule.getMessage());
+            response.setStatusCode(existingModule.getStatusCode());
+            return response;
+        }
+        response.setLessons(existingModule.getModule().getLessonsInModule());
+        response.setMessage("All lessons in the module "+existingModule.getModule().getTitle());
+        response.setStatusCode(200);
+
+        return response;
+    }
 }

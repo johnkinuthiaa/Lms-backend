@@ -116,4 +116,43 @@ public class CourseModuleServiceImplementation implements CourseModuleService {
         return response;
 
     }
+
+    @Override
+    public ModuleDto findAllModules() {
+        ModuleDto response =new ModuleDto();
+        var allModules =repository.findAll().reversed();
+        if(allModules.isEmpty()){
+            response.setStatusCode(203);
+            response.setMessage("No modules available");
+            return response;
+        }
+        response.setModules(allModules);
+        response.setStatusCode(200);
+        response.setMessage("All modules found");
+        return response;
+    }
+
+    @Override
+    public ModuleDto findAllModulesInCourse(Long courseId) {
+        ModuleDto response =new ModuleDto();
+        var existingCourse =courseService.findCourseById(courseId);
+        if(existingCourse.getStatusCode() !=200){
+            response.setMessage(existingCourse.getMessage());
+            response.setStatusCode(existingCourse.getStatusCode());
+            return response;
+        }
+
+        var allModulesInCourse =repository.findAll().stream()
+                .filter(courseModule -> courseModule.getCourse().getId().equals(existingCourse.getCourse().getId()))
+                .toList();
+        if(allModulesInCourse.isEmpty()){
+            response.setMessage("No module is in the course");
+            response.setStatusCode(203);
+            return response;
+        }
+        response.setModules(allModulesInCourse);
+        response.setStatusCode(200);
+        response.setMessage("All modules in course "+existingCourse.getCourse().getTitle());
+        return response;
+    }
 }

@@ -30,4 +30,9 @@ public class CourseController {
         var unEnrolledUser =courseService.unEnrollUserToCourse(userId, courseId);
         return ResponseEntity.status(HttpStatusCode.valueOf(unEnrolledUser.getStatusCode())).body(unEnrolledUser);
     }
+    @GetMapping("/all")
+    public ResponseEntity<CourseDto> findAllCourses(){
+        var allCourses=courseService.findAllCourses();
+        return ResponseEntity.status(HttpStatusCode.valueOf(allCourses.getStatusCode())).body(allCourses);
+    }
 }

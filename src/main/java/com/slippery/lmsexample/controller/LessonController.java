@@ -22,4 +22,14 @@ public class LessonController {
         var createdLesson =service.createNewLesson(tutorId, courseId, moduleId, lessonDetails);
         return ResponseEntity.status(HttpStatusCode.valueOf(createdLesson.getStatusCode())).body(createdLesson);
     }
+    @GetMapping("/{lessonId}/get")
+    public ResponseEntity<LessonDto> findLessonById(@PathVariable Long lessonId){
+        var lesson =service.findLessonById(lessonId);
+        return ResponseEntity.status(HttpStatusCode.valueOf(lesson.getStatusCode())).body(lesson);
+    }
+    @GetMapping("/all-in/{moduleId}")
+    public ResponseEntity<LessonDto> findAllLessonsInModule(@PathVariable Long moduleId){
+        var allLessonsInModules =service.findAllLessonsInModule(moduleId);
+        return ResponseEntity.status(HttpStatusCode.valueOf(allLessonsInModules.getStatusCode())).body(allLessonsInModules);
+    }
 }

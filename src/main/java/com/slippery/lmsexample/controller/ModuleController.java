@@ -35,4 +35,14 @@ public class ModuleController{
         var existingModule =service.findModuleById(moduleId);
         return ResponseEntity.status(HttpStatusCode.valueOf(existingModule.getStatusCode())).body(existingModule);
     }
+    @GetMapping("/get-all")
+    public ResponseEntity<ModuleDto> findAllModules(){
+        var existingModule =service.findAllModules();
+        return ResponseEntity.status(HttpStatusCode.valueOf(existingModule.getStatusCode())).body(existingModule);
+    }
+    @GetMapping("/modules-in/{courseId}")
+    public ResponseEntity<ModuleDto> findAllModulesInCourse(@PathVariable Long courseId){
+        var allModules =service.findAllModulesInCourse(courseId);
+        return ResponseEntity.status(HttpStatusCode.valueOf(allModules.getStatusCode())).body(allModules);
+    }
 }
