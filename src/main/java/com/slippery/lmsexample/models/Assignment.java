@@ -25,4 +25,5 @@ public class Assignment {
     private LocalDateTime dueDate;
     @URL
     private String githubLink;
+    private String slug;
 }

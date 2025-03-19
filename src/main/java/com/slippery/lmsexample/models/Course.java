@@ -1,5 +1,6 @@
 package com.slippery.lmsexample.models;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +28,7 @@ public class Course {
     @NotNull
     @Lob
     private String description;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
     private List<CourseModule> modulesInCourse =new ArrayList<>();
     @NotNull
     private Long price;
@@ -36,5 +38,6 @@ public class Course {
     private User instructorDetails;
     private LocalDateTime createdOn =LocalDateTime.now();
     private LocalDateTime updatedOn =null;
+    private String slug;
 
 }

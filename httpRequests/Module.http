@@ -7,5 +7,10 @@ PUT http://localhost:8080/api/v1/modules/1/new-module?courseId=1
 Content-Type: application/json
 
 {
-  "title": "Python programming"
+  "title": "Web 2.0 technologies"
 }
+###
+PUT http://localhost:8080/api/v1/modules/1/remove-from/1?adminId=1
+
+###
+GET http://localhost:8080/api/v1/modules/2/get

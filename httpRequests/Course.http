@@ -7,8 +7,8 @@ POST http://localhost:8080/api/v1/courses/1/create
 Content-Type: application/json
 
 {
-  "description": "This comprehensive python course that teaches you python programming language from basics to advanced level",
-  "title": "python for beginners",
+  "description": "This comprehensive Software Engineering course that teaches you SOftware engineering concepts from basics to advanced level",
+  "title": "Software Engineering",
   "price": 0
 }
 ###

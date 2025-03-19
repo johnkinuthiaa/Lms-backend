@@ -1,5 +1,6 @@
 package com.slippery.lmsexample.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,10 +18,14 @@ public class CourseModule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    private String slug;
     @ManyToOne
+    @JoinColumn(name = "Course_Id")
+    @JsonIgnore
     private Course course;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Lesson> lessonsInModule;
     @ManyToOne
     private User tutor;
+
 }

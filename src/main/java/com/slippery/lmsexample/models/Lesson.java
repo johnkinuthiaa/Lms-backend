@@ -16,6 +16,7 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    private String slug;
     @Lob
     private String content;
     @ManyToOne

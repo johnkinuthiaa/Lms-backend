@@ -38,9 +38,11 @@ public class CourseServiceImpl implements CourseService {
             response.setStatusCode(403);
             return response;
         }
+        existingUser.getUser().getCourseList().add(course);
         course.setEnrolledLearners(new ArrayList<>());
         course.setInstructorDetails(existingUser.getUser());
         course.setModulesInCourse(new ArrayList<>());
+        course.setSlug(course.getTitle().replace(" ","-"));
         course.setPrice(0L);
         repository.save(course);
         response.setMessage("New course created");
