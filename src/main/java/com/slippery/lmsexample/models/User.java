@@ -43,4 +43,6 @@ public class User {
     @Lob
     private String userDescription;
     private String mobileNumber;
+    @Lob
+    private byte[] profileImage;
 }

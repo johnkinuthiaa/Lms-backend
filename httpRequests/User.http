@@ -44,3 +44,4 @@ Content-Type: application/json
   "role": "STUDENT"
 }
 ###
+PUT http://localhost:8080/api/v1/users/1/upload-profile-photo

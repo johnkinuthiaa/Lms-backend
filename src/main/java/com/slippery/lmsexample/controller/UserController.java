@@ -7,9 +7,13 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/v1/users")
+@CrossOrigin
 public class UserController {
     private final UsersService usersService;
 
@@ -45,5 +49,10 @@ public class UserController {
     public ResponseEntity<UserDto> updateUserProfile(@PathVariable Long userId,@RequestBody User updateDetails) {
         var updatedUser =usersService.updateUserProfile(userId, updateDetails);
         return ResponseEntity.status(HttpStatusCode.valueOf(updatedUser.getStatusCode())).body(updatedUser);
+    }
+    @PutMapping("/{userId}/upload-profile-photo")
+    public ResponseEntity<UserDto> uploadProfileImage(@PathVariable Long userId, @RequestPart MultipartFile image) throws IOException {
+        var uploadedProfile =usersService.uploadProfilePhoto(userId,image);
+        return ResponseEntity.status(HttpStatusCode.valueOf(uploadedProfile.getStatusCode())).body(uploadedProfile);
     }
 }

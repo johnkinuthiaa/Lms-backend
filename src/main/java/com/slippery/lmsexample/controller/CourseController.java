@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/courses")
+@CrossOrigin
 public class CourseController {
     private final CourseService courseService;
 

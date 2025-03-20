@@ -10,7 +10,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -41,6 +43,7 @@ public class UserServiceImpl implements UsersService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setEnrolledOn(LocalDateTime.now());
         user.setCourseList(new ArrayList<>());
+        user.setProfileImage(null);
         user.setUserCourseModules(new ArrayList<>());
         try{
             userRepository.save(user);
@@ -138,5 +141,25 @@ public class UserServiceImpl implements UsersService {
         response.setMessage("User updated");
         response.setStatusCode(200);
         return response;
+    }
+
+    @Override
+    public UserDto uploadProfilePhoto(Long userId,MultipartFile image) throws IOException {
+        UserDto response =new UserDto();
+        var existingUser =findUserAccountById(userId);
+        if(existingUser.getStatusCode() !=200){
+            return existingUser;
+        }try{
+            existingUser.getUser().setProfileImage(image.getBytes());
+            userRepository.save(existingUser.getUser());
+            response.setMessage("Profile photo uploaded successfully!!");
+            response.setStatusCode(200);
+            return response;
+        } catch (IOException e) {
+            response.setMessage(e.getMessage());
+            response.setStatusCode(500);
+            throw new IOException();
+        }
+//        update to check for file types and only allow for images only
     }
 }

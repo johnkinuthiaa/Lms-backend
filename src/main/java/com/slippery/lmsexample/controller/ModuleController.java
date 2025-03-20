@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/modules")
+@CrossOrigin
 
 @Tag(name = " module controller",description = "create,delete modules from courses")
 public class ModuleController{
