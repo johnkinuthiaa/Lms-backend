@@ -3,11 +3,12 @@ GET https://examples.http-client.intellij.net/get
     ?generated-in=IntelliJ IDEA
 
 ###
-PUT http://localhost:8080/api/v1/modules/1/new-module?courseId=1
+PUT http://localhost:8080/api/v1/modules/1/new-module?courseId=
 Content-Type: application/json
 
 {
-  "title": "Java programming"
+  "title": "Java programming",
+  "moduleImage": ""
 }
 ###
 PUT http://localhost:8080/api/v1/modules/1/remove-from/1?adminId=1

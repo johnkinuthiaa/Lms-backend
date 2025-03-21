@@ -1,5 +1,6 @@
 package com.slippery.lmsexample.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -29,15 +30,19 @@ public class Course {
     @Lob
     private String description;
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JsonIgnore
     private List<CourseModule> modulesInCourse =new ArrayList<>();
     @NotNull
     private Long price;
     @OneToMany
     private List<User> enrolledLearners;
+    @JsonIgnore
     @ManyToOne
     private User instructorDetails;
     private LocalDateTime createdOn =LocalDateTime.now();
     private LocalDateTime updatedOn =null;
     private String slug;
+    private String courseImage;
+    private String category;
 
 }

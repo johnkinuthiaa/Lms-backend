@@ -9,8 +9,7 @@ import com.slippery.lmsexample.service.CourseService;
 import com.slippery.lmsexample.service.UsersService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -167,6 +166,15 @@ public class CourseServiceImpl implements CourseService {
         response.setMessage("All our courses");
         response.setStatusCode(200);
         response.setCourseList(allCourses);
+        return response;
+    }
+
+    @Override
+    public CourseDto findAvailableCourse() {
+        CourseDto response =new CourseDto();
+        Map<String,Long> ids =new HashMap<>();
+        Map<String,String> courseNames =new HashMap<>();
+        response.setStatusCode(200);
         return response;
     }
 

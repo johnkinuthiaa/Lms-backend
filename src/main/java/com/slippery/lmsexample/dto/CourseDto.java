@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.slippery.lmsexample.models.Course;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
 import java.util.List;
+import java.util.Map;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -14,4 +16,6 @@ import java.util.List;
 public class CourseDto extends BaseEntity{
     private Course course;
     private List<Course> courseList;
+    private Map<Long,String> courseWithId;
+    private Map<Map,Map> combinedOutPut;
 }

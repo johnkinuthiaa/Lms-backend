@@ -26,6 +26,7 @@ public class CourseModule {
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Lesson> lessonsInModule;
     @ManyToOne
+    @JsonIgnore
     private User tutor;
-
+    private String moduleImage;
 }

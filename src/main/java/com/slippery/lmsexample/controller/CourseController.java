@@ -36,4 +36,14 @@ public class CourseController {
         var allCourses=courseService.findAllCourses();
         return ResponseEntity.status(HttpStatusCode.valueOf(allCourses.getStatusCode())).body(allCourses);
     }
+    @GetMapping("/{courseId}/get")
+    public ResponseEntity<CourseDto> findCourseById(@PathVariable Long courseId){
+        var course =courseService.findCourseById(courseId);
+        return ResponseEntity.status(HttpStatusCode.valueOf(course.getStatusCode())).body(course);
+    }
+    @GetMapping("/course-map")
+    public ResponseEntity<CourseDto> findAvailableCourse(){
+        var courseHashMap =courseService.findAvailableCourse();
+        return ResponseEntity.status(HttpStatusCode.valueOf(courseHashMap.getStatusCode())).body(courseHashMap);
+    }
 }
