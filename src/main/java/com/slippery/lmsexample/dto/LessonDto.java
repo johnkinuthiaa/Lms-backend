@@ -13,5 +13,6 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LessonDto extends BaseEntity{
     private Lesson lesson;
+    private String moduleSlug;
     private List<Lesson> lessons;
 }

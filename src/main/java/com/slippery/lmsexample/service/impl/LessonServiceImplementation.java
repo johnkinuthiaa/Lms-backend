@@ -90,6 +90,7 @@ public class LessonServiceImplementation implements LessonService {
             response.setStatusCode(existingModule.getStatusCode());
             return response;
         }
+        response.setModuleSlug(existingModule.getModule().getSlug());
         response.setLessons(existingModule.getModule().getLessonsInModule());
         response.setMessage("All lessons in the module "+existingModule.getModule().getTitle());
         response.setStatusCode(200);

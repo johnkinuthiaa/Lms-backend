@@ -30,7 +30,6 @@ public class Course {
     @Lob
     private String description;
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
-    @JsonIgnore
     private List<CourseModule> modulesInCourse =new ArrayList<>();
     @NotNull
     private Long price;
