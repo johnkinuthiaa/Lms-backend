@@ -46,4 +46,12 @@ public class CourseController {
         var courseHashMap =courseService.findAvailableCourse();
         return ResponseEntity.status(HttpStatusCode.valueOf(courseHashMap.getStatusCode())).body(courseHashMap);
     }
+    @GetMapping("/get/{userId}/courses")
+    public ResponseEntity<CourseDto> allCoursesEnrolledByUser(@PathVariable Long userId){
+        var allUserCoursesEnrolledByUser =courseService.findAllCoursesEnrolledByUser(userId);
+        return ResponseEntity.status(
+                HttpStatusCode.valueOf(
+                        allUserCoursesEnrolledByUser.getStatusCode()))
+                .body(allUserCoursesEnrolledByUser);
+    }
 }

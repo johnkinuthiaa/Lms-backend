@@ -101,7 +101,7 @@ public class CourseServiceImpl implements CourseService {
             response.setStatusCode(user.getStatusCode());
             return response;
         }
-        var userCourses =user.getUser().getCourseList();
+        var userCourses =user.getUser().getEnrolledCourses();
         if(userCourses.contains(course.getCourse())){
             response.setMessage("User was already to the course with id "+courseId);
             response.setStatusCode(404);
@@ -109,7 +109,7 @@ public class CourseServiceImpl implements CourseService {
         }
 
         userCourses.add(course.getCourse());
-        user.getUser().setCourseList(userCourses);
+        user.getUser().setEnrolledCourses(userCourses);
 
         var enrolledUsers =course.getCourse().getEnrolledLearners();
         enrolledUsers.add(user.getUser());
@@ -138,7 +138,7 @@ public class CourseServiceImpl implements CourseService {
             return response;
         }
 
-        var userCourses =user.getUser().getCourseList();
+        var userCourses =user.getUser().getEnrolledCourses();
         var enrolledUsers =course.getCourse().getEnrolledLearners();
         if(!userCourses.contains(course.getCourse())){
             response.setMessage("User was not enrolled in the course");
@@ -175,6 +175,22 @@ public class CourseServiceImpl implements CourseService {
         Map<String,Long> ids =new HashMap<>();
         Map<String,String> courseNames =new HashMap<>();
         response.setStatusCode(200);
+        return response;
+    }
+
+    @Override
+    public CourseDto findAllCoursesEnrolledByUser(Long userId) {
+        CourseDto response =new CourseDto();
+        var user =usersService.findUserAccountById(userId);
+        if(user.getStatusCode() !=200){
+            response.setMessage(user.getMessage());
+            response.setStatusCode(user.getStatusCode());
+            return response;
+        }
+        var userCourses =user.getUser().getEnrolledCourses();
+        response.setMessage("all courses by user");
+        response.setStatusCode(200);
+        response.setCourseList(userCourses);
         return response;
     }
 

@@ -1,6 +1,9 @@
 package com.slippery.lmsexample.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -18,7 +21,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,8 +37,8 @@ public class Course {
     private Long price;
     @OneToMany
     private List<User> enrolledLearners;
-    @JsonIgnore
     @ManyToOne
+    @JsonManagedReference
     private User instructorDetails;
     private LocalDateTime createdOn =LocalDateTime.now();
     private LocalDateTime updatedOn =null;

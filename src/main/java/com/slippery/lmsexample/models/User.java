@@ -1,5 +1,9 @@
 package com.slippery.lmsexample.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,7 +36,12 @@ public class User {
     private String role;
     private Long points =0L;
     @OneToMany
+    @JsonIgnore
     private List<Course> courseList;
+    @OneToMany
+    @JsonIgnore
+    private List<Course> enrolledCourses;
+
     private LocalDateTime enrolledOn =LocalDateTime.now();
     private String cohort;
     @OneToMany

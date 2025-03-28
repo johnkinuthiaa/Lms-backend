@@ -11,5 +11,6 @@ public interface CourseService {
     CourseDto unEnrollUserToCourse(Long userId,Long courseId);
     CourseDto findAllCourses();
     CourseDto findAvailableCourse();
+    CourseDto findAllCoursesEnrolledByUser(Long userId);
 
 }

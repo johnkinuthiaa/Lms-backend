@@ -61,7 +61,9 @@ public class UserServiceImpl implements UsersService {
     public UserDto login(User userDetails) {
         UserDto response =new UserDto();
         String username =userRepository.findByEmail(userDetails.getEmail()).getUsername();
-        if(username ==null){
+        var user =userRepository.findByEmail(userDetails.getEmail());
+
+        if(user ==null){
             response.setMessage("No user with the email "+userDetails.getEmail()+" was found");
             response.setStatusCode(404);
             return response;
@@ -71,6 +73,7 @@ public class UserServiceImpl implements UsersService {
                     new UsernamePasswordAuthenticationToken(username,userDetails.getPassword()));
             if(authentication.isAuthenticated()){
                 response.setMessage("Logged in successfully");
+                response.setUser(user);
                 response.setStatusCode(200);
             }
         } catch (Exception e) {
